@@ -24,17 +24,40 @@ class CandidateController extends Controller
     }  
     public function storeData(Request $request)
     {
+        //dd("hii");
         $request->validate([
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'resume' => 'required',
+            'file' => 'required',
         ]);
-    
-        Candidate::create($request->all());
-     
-        return view('can_register')
-                        ->with('success','created successfully.');
+        
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $dob = $request->dob;
+        $address = $request->address;
+        $file = $request->file('file')->getClientOriginalName();
+ 
+        $path = $request->file('file')->store('public/files');
+ 
+        $candidate = new Candidate;
+ 
+            $candidate->file = $file;
+            $candidate->file_path = $path;
+            $candidate->name = $name;
+            $candidate->email = $email;
+            $candidate->phone = $phone;
+            $candidate->dob = $dob;
+            $candidate->address = $address;
+            
+            //dd($candidate);
+            $candidate->save();
+            return back()
+            ->with('success','Data has been uploaded.');
+        
+            
+        
     }
 
     public function show(Candidate $candidate)
@@ -61,15 +84,26 @@ class CandidateController extends Controller
             'name' => 'required',
             'email' => 'required',
             'phone' => 'required',
-            'resume' => 'required',
+            'file' => 'required',
             ]);
             $candidate = Candidate::find($id);
-            $candidate->name = $request->name;
-            $candidate->email = $request->email;
-            $candidate->phone = $request->phone;
-            $candidate->dob = $request->dob;
-            $candidate->address = $request->address;
-            $candidate->resume = $request->resume;
+            //dd($candidate);
+            $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $dob = $request->dob;
+        $address = $request->address;
+        $file = $request->file('file')->getClientOriginalName();
+        $path = $request->file('file')->store('public/files');
+
+
+            $candidate->file = $file;
+            $candidate->file_path = $path;
+            $candidate->name = $name;
+            $candidate->email = $email;
+            $candidate->phone = $phone;
+            $candidate->dob = $dob;
+            $candidate->address = $address;
             $candidate->save();
      
         return view('dashboard')
@@ -78,3 +112,4 @@ class CandidateController extends Controller
 
     
 }
+
