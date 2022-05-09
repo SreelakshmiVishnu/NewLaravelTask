@@ -20,6 +20,7 @@ class Candidate extends Model
         'phone',
         'dob',
         'address',
-        'resume',
+        'file',
+        'file_path',
     ];
 }
