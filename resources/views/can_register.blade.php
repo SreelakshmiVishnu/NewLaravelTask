@@ -276,7 +276,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{ route('candidate.register') }}" method="POST">
+              <form action="{{ route('candidate.register') }}" method="POST" enctype="multipart/form-data">
                           @csrf
                 <div class="card-body">
                 <div class="form-group">
@@ -303,7 +303,7 @@
                     <label for="exampleInputFile">File input</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="resume">
+                        <input type="file" class="custom-file-input" id="exampleInputFile" name="file">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                       </div>
                       <div class="input-group-append">
