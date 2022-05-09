@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('phone');
             $table->string('dob');
             $table->string('address');
-            $table->string('resume');
+            $table->string('file');
+            $table->string('file_path');
             $table->timestamps();
         });
     }
