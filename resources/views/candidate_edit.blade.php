@@ -286,7 +286,7 @@
               <div class="row">
         
     <div class="row" style="margin-left: 100px;">
-    <form action="{{ route('candidate.update',$candidate->id) }}" method="POST">
+    <form action="{{ route('candidate.update',$candidate->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
    
@@ -324,7 +324,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Resume</strong>
-                    <input type="file" name="resume" value="{{ $candidate->resume }}" class="form-control">
+                    <input type="file" name="file" value="{{ $candidate->file }}" class="form-control">
                 </div>
             </div>
 
